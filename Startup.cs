@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using WebApiMonitoreo.Services;
 using WebMonitoreoWhatsapp.Models;
 
 namespace WebApiMonitoreo
@@ -25,12 +26,14 @@ namespace WebApiMonitoreo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContextPostgres>(options =>
-                options.UseNpgsql("Host=localhost;Database=whatsapp_monitoreo;Username=postgres;Password=postgres")
+            services.AddDbContext<ApplicationDbContextOne>(options =>
+                options.UseNpgsql("Host=localhost;Database=whatsapp;Username=postgres;Password=postgres")
                     .EnableSensitiveDataLogging(true)
                     .UseLoggerFactory(new LoggerFactory().AddConsole((category, level) => level == LogLevel.Information && category == DbLoggerCategory.Database.Command.Name, true))
             );
             services.AddMvc();
+
+            services.AddScoped<IUsuarioService, UsuarioService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

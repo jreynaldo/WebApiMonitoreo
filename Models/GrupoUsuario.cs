@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebMonitoreoWhatsapp.Models
 {
+    [Table("grupousuarios")]
     public class GrupoUsuario
     {
 

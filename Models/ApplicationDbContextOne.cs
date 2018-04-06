@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 
 namespace WebMonitoreoWhatsapp.Models
 {
-    public class ApplicationDbContextPostgres : DbContext
+    public class ApplicationDbContextOne : DbContext
     {
 
-        public ApplicationDbContextPostgres(DbContextOptions <ApplicationDbContextPostgres> options):base(options)
+        public ApplicationDbContextOne(DbContextOptions <ApplicationDbContextOne> options):base(options)
         {
 
         }
+
+      
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<GrupoUsuario>().HasKey(x => new { x.GrupoId, x.UsuarioId });
